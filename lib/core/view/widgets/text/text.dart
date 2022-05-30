@@ -13,9 +13,11 @@ class CText extends StatelessWidget {
   }) : super(key: key);
 
   TextStyle? _handleStyle(BuildContext context) {
-    return Theme.of(context).textTheme.bodyMedium!.copyWith(
-          fontWeight: weight,
-        );
+    return Theme
+      .of(context)
+      .textTheme
+      .bodyMedium!
+      .copyWith(fontWeight: weight);
   }
 
   @override
