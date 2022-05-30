@@ -8,18 +8,33 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Be the Hero',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xFFF0F0F5),
         primarySwatch: Colors.blue,
         textTheme: TextTheme(
+          titleLarge: TextStyle(
+            color: Color(0xFF13131A),
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          titleMedium: TextStyle(
+            color: Color(0xFF13131A),
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
           bodyMedium: TextStyle(
             color: Color(0xFF737380),
-            fontSize: 15
+            fontSize: 15,
+          ),
+          bodyLarge: TextStyle(
+            color: Color(0xFF737380),
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
         ),
         appBarTheme: AppBarTheme(
@@ -27,7 +42,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      home: Home(),
+      home: Home(), 
     );
   }
 }
