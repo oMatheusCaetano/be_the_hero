@@ -5,6 +5,7 @@ enum CTextTheme {
   titleMedium,
   bodyLarge,
   bodyMedium,
+  displayMedium,
 }
 
 class CText extends StatelessWidget {
@@ -12,13 +13,15 @@ class CText extends StatelessWidget {
   final FontWeight? weight;
   final AlignmentGeometry? alignment;
   final CTextTheme? theme;
+  final EdgeInsetsGeometry? margin;
 
   const CText(
     this.text, {
     Key? key,
+    this.alignment = Alignment.topLeft,
     this.weight,
     this.theme,
-    this.alignment = Alignment.topLeft,
+    this.margin,
   }) : super(key: key);
 
   TextStyle? _handleStyle(BuildContext context) {
@@ -34,6 +37,10 @@ class CText extends StatelessWidget {
       case CTextTheme.bodyLarge:
         t = Theme.of(context).textTheme.bodyLarge;
         break;
+
+      case CTextTheme.displayMedium:
+        t = Theme.of(context).textTheme.displayMedium;
+        break;
       default:
         t = Theme.of(context).textTheme.bodyMedium;
     }
@@ -45,6 +52,7 @@ class CText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: alignment,
+      margin: margin,
       child: Text(
         text ?? '',
         style: _handleStyle(context),

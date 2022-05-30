@@ -27,6 +27,11 @@ class MyApp extends StatelessWidget {
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
+          displayMedium: TextStyle(
+            color: Color(0xFF41414D),
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+          ),
           bodyMedium: TextStyle(
             color: Color(0xFF737380),
             fontSize: 15,
@@ -40,6 +45,16 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           color: Color(0xFFF0F0F5),
           elevation: 0,
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            overlayColor: MaterialStateProperty.all(Color(0x11E02041)),
+            foregroundColor: MaterialStateProperty.all(Color(0xFFE02041)),
+            textStyle: MaterialStateProperty.all(TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            )),
+          ),
         ),
       ),
       home: Home(), 
