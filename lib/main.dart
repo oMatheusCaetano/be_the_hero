@@ -1,5 +1,6 @@
-import 'package:be_the_hero/view/pages/home/home.dart';
 import 'package:flutter/material.dart';
+
+import 'package:be_the_hero/view/pages/home/home.dart';
 
 void main() {
   runApp(const MyApp());

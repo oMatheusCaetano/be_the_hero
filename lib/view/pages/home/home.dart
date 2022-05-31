@@ -193,8 +193,14 @@ class _HomeState extends State<Home> {
                                               child: Container(
                                                 height: 50,
                                                 child: ElevatedButton(
-                                                    onPressed: () {},
-                                                    child: Text('E-mail')),
+                                                  onPressed: () {
+                                                    ULauncher.mail(
+                                                      heroCase.email,
+                                                      subject: 'Doação: ' + heroCase.title,
+                                                    );
+                                                  },
+                                                  child: Text('E-mail'),
+                                                ),
                                               ),
                                             ),
                                           ),
