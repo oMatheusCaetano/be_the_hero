@@ -1,3 +1,8 @@
+import 'dart:io';
+import 'package:be_the_hero/domain/helpers/launcher.dart';
+import 'package:be_the_hero/view/widgets/misc/if.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:be_the_hero/domain/helpers/media.dart';
 import 'package:be_the_hero/domain/models/hero_case.dart';
 import 'package:be_the_hero/view/widgets/card/card.dart';
@@ -38,7 +43,6 @@ class _HomeState extends State<Home> {
       title: 'Campanha de arrecadação de alimentos',
       description:
           'Esta campanha visa arrecadar alimentos que serão doados para famílias carentes entre o natal e o ano novo.',
-      cellphone: '5562911112222',
       email: 'email@email.com',
     ),
     HeroCase(
@@ -47,7 +51,6 @@ class _HomeState extends State<Home> {
       ong: 'APAD',
       description: 'Arrecadação de brinquedos para o dia das crianças.',
       cellphone: '5562911112222',
-      email: 'email@email.com',
     ),
   ];
 
@@ -94,15 +97,12 @@ class _HomeState extends State<Home> {
                         Expanded(child: CTile('ONG:', heroCase.ong)),
                       ],
                     ),
-
                     CTile(
-                      'DOAÇÃO NECESSÁRIA:', 
+                      'DOAÇÃO NECESSÁRIA:',
                       heroCase.neededValueToCurrency(),
                       margin: EdgeInsets.only(top: 24, bottom: 20),
                     ),
-
                     Divider(),
-
                     TextButton(
                       child: Row(children: [
                         Text('Ver mais detalhes'),
@@ -115,7 +115,8 @@ class _HomeState extends State<Home> {
                           isScrollControlled: true,
                           constraints: BoxConstraints(
                             minHeight: 300,
-                            maxHeight: MediaQuery.of(context).size.height / 1.07,
+                            maxHeight:
+                                MediaQuery.of(context).size.height / 1.07,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
@@ -134,9 +135,9 @@ class _HomeState extends State<Home> {
                                 Row(
                                   children: [
                                     UMedia.svg(
-                                      UMedia.logoSvg, 
+                                      UMedia.logoSvg,
                                       alt: 'Be the Hero',
-                                      height: 24, 
+                                      height: 24,
                                     ),
                                     Spacer(),
                                     CloseButton(),
@@ -153,34 +154,22 @@ class _HomeState extends State<Home> {
                                       ),
                                       Divider(),
                                       SizedBox(height: 15),
-                                                          
+                                      CTile('CASO:', heroCase.title,
+                                          margin:
+                                              EdgeInsets.only(bottom: 24)),
+                                      CTile('ONG:', heroCase.ong,
+                                          margin:
+                                              EdgeInsets.only(bottom: 24)),
                                       CTile(
-                                        'CASO:',
-                                        heroCase.title,
-                                        margin: EdgeInsets.only(bottom: 24)
-                                      ),
-                                                          
-                                      CTile(
-                                        'ONG:',
-                                        heroCase.ong,
-                                        margin: EdgeInsets.only(bottom: 24)
-                                      ),
-                                                          
-                                      CTile(
-                                        'DESCRIÇÃO:',
-                                        heroCase.description,
-                                        margin: EdgeInsets.only(bottom: 24)
-                                      ),
-                                                          
-                                      CTile(
-                                        'DOAÇÃO NECESSÁRIA:',
-                                        heroCase.neededValueToCurrency(),
-                                        margin: EdgeInsets.only(bottom: 30)
-                                      ),
-                                                          
+                                          'DESCRIÇÃO:', heroCase.description,
+                                          margin:
+                                              EdgeInsets.only(bottom: 24)),
+                                      CTile('DOAÇÃO NECESSÁRIA:',
+                                          heroCase.neededValueToCurrency(),
+                                          margin:
+                                              EdgeInsets.only(bottom: 30)),
                                       Divider(),
                                       SizedBox(height: 30),
-                                                          
                                       CText(
                                         'Salve o dia!',
                                         theme: CTextTheme.titleMedium,
@@ -192,37 +181,49 @@ class _HomeState extends State<Home> {
                                       CText(
                                         'Entre em contato:',
                                         margin: EdgeInsets.only(
-                                          top: 15, 
+                                          top: 15,
                                           bottom: 10,
                                         ),
                                       ),
-                                                          
                                       Row(
                                         children: [
-                                          Expanded(
-                                            child: Container(
-                                              height: 50,
-                                              child: ElevatedButton(
-                                                onPressed: () {}, 
-                                                child: Text('E-mail')
+                                          CIf(
+                                            condition: heroCase.email != null,
+                                            child: Expanded(
+                                              child: Container(
+                                                height: 50,
+                                                child: ElevatedButton(
+                                                    onPressed: () {},
+                                                    child: Text('E-mail')),
                                               ),
                                             ),
                                           ),
-                                          SizedBox(width: 24),
-                                          Expanded(
-                                            child: Container(
-                                              height: 50,
-                                              child: ElevatedButton(
-                                                onPressed: () {}, 
-                                                child: Text('Whatsapp')
+
+                                          CIf(
+                                            condition: heroCase.email != null && heroCase.cellphone != null,
+                                            child: SizedBox(width: 24),
+                                          ),
+
+                                          CIf(
+                                            condition: heroCase.cellphone != null,
+                                            child: Expanded(
+                                              child: Container(
+                                                height: 50,
+                                                child: ElevatedButton(
+                                                  onPressed: () {
+                                                    ULauncher.whatsapp(heroCase.cellphone);
+                                                  },
+                                                  child: Text('Whatsapp'),
+                                                ),
                                               ),
                                             ),
                                           ),
+
+                                          
                                         ],
                                       ),
-                                                          
                                       SizedBox(height: 50),
-                                    ]
+                                    ],
                                   ),
                                 )
                               ],
