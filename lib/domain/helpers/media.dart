@@ -6,12 +6,14 @@ class UMedia {
 
   static Widget svg(String path, {
     BoxFit fit = BoxFit.contain,
+    double? height,
     String? alt,
   }) {
     return SvgPicture.asset(
       path,
       semanticsLabel: alt, 
-      fit: fit
+      fit: fit,
+      height: height,
     );
   }
 }

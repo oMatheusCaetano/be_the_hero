@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CList extends StatelessWidget {
-  final int count;
-  final Widget Function(BuildContext, int) builder;
+  final int? count;
+  final List<dynamic>? data;
+  final Widget Function(dynamic, BuildContext, int) builder;
 
   const CList({
-    Key? key, 
-    required this.count, 
+    Key? key,
+    this.count,
+    this.data,
     required this.builder,
   }) : super(key: key);
 
@@ -15,9 +17,12 @@ class CList extends StatelessWidget {
     return Expanded(
       child: ListView.separated(
         physics: BouncingScrollPhysics(),
-        itemCount: count,
+        itemCount: count ?? (data != null ? data!.length : 0),
         separatorBuilder: (_, __) => SizedBox(height: 16),
-        itemBuilder: builder,
+        itemBuilder: (c, i) {
+          final item = (data != null) ? data![i] : null;
+          return builder(item, c, i);
+        },
       ),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:be_the_hero/core/view/pages/home/home.dart';
+import 'package:be_the_hero/view/pages/home/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -54,6 +54,23 @@ class MyApp extends StatelessWidget {
               fontSize: 15,
               fontWeight: FontWeight.w600,
             )),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            elevation: MaterialStateProperty.all(0),
+            backgroundColor: MaterialStateProperty.all(Color(0xFFE02041)),
+            foregroundColor: MaterialStateProperty.all(Color(0xFFF0F0F5)),
+            textStyle: MaterialStateProperty.all(TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15
+            )),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+                side: BorderSide(color: Colors.red)
+              )
+            ),
           ),
         ),
       ),
