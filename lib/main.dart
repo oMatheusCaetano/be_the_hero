@@ -1,3 +1,4 @@
+import 'package:be_the_hero/view/pages/auth/auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:be_the_hero/view/pages/home/home.dart';
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: Home(), 
+      home: Auth(), 
     );
   }
 }
