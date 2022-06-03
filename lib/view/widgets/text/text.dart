@@ -14,6 +14,7 @@ class CText extends StatelessWidget {
   final AlignmentGeometry? alignment;
   final CTextTheme? theme;
   final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
 
   const CText(
     this.text, {
@@ -22,6 +23,7 @@ class CText extends StatelessWidget {
     this.weight,
     this.theme,
     this.margin,
+    this.padding,
   }) : super(key: key);
 
   TextStyle? _handleStyle(BuildContext context) {
@@ -52,6 +54,7 @@ class CText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: alignment,
+      padding: padding,
       margin: margin,
       child: Text(
         text ?? '',

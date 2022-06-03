@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
-                side: BorderSide(color: Colors.red)
+                side: BorderSide(color: Colors.red.withOpacity(0), width: 0),
               )
             ),
           ),
